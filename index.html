@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tongue | Tech News</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/css/main.css" />
+  </head>
+  <body>
+
+    <!-- ── Header ── -->
+    <header class="header">
+      <div class="header__inner">
+        <div class="header__left">
+          <div class="header__brand">
+            <span class="header__logo">👅</span>
+            <span class="header__name">Tongue</span>
+            <span class="header__tag">Tech Feed</span>
+          </div>
+          <p class="header__subtitle">Le ultime notizie dal mondo tech · Hacker News</p>
+        </div>
+        <div class="header__actions">
+          <button class="theme-toggle" id="theme-toggle" title="Cambia tema">🌙</button>
+          <button class="btn btn--outline" id="fav-toggle-btn" style="padding:0.5rem 1rem;font-size:0.8rem;">
+            ⭐ Preferiti <span id="fav-count" style="background:var(--accent);color:#fff;border-radius:10px;padding:0.1rem 0.4rem;font-size:0.7rem;margin-left:0.2rem;display:none">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Stats bar ── -->
+    <div class="stats-bar">
+      <div class="stats-bar__inner">
+        <div class="stat">
+          <span class="stat__icon">📰</span>
+          <span>Caricate:</span>
+          <span class="stat__value" id="stat-loaded">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat__icon">🔥</span>
+          <span>Top fonte:</span>
+          <span class="stat__value" id="stat-top-source">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat__icon">⏱️</span>
+          <span>Aggiornato:</span>
+          <span class="stat__value" id="stat-time">—</span>
+        </div>
+        <span class="new-badge hidden" id="new-badge">🆕 Nuove news!</span>
+      </div>
+    </div>
+
+    <!-- ── Search ── -->
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        class="search-input"
+        id="search-input"
+        placeholder="Cerca nelle news caricate…"
+        autocomplete="off"
+      />
+      <span class="search-count hidden" id="search-count"></span>
+    </div>
+
+    <!-- ── Main ── -->
+    <main class="main">
+      <div id="news-container" class="news-grid"></div>
+
+      <div id="no-results" class="no-results hidden">
+        <div class="no-results__icon">🔍</div>
+        <p class="no-results__text">Nessuna news trovata per "<span id="no-results-term"></span>"</p>
+      </div>
+
+      <div id="loading-state" class="loading-state">
+        <div class="loading-state__dots">
+          <span></span><span></span><span></span>
+        </div>
+        <p>Caricamento news in corso…</p>
+      </div>
+
+      <div id="error-state" class="error-state hidden">
+        <p>⚠️ Impossibile caricare le notizie. Riprova.</p>
+        <button id="retry-btn" class="btn btn--outline">Riprova</button>
+      </div>
+
+      <div class="load-more-wrapper">
+        <button id="load-more-btn" class="btn btn--primary hidden">
+          <span class="btn__text">Carica altre 10 news</span>
+          <span class="btn__loader hidden"></span>
+        </button>
+      </div>
+    </main>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <p>Dati forniti da <a href="https://news.ycombinator.com" target="_blank" rel="noopener">Hacker News</a> · Progetto per <strong>Tongue</strong></p>
+    </footer>
+
+    <!-- ── Scroll to top ── -->
+    <button class="scroll-top" id="scroll-top" title="Torna su">↑</button>
+
+    <!-- ── Favorites panel ── -->
+    <div class="fav-overlay" id="fav-overlay"></div>
+    <aside class="fav-panel" id="fav-panel">
+      <div class="fav-panel__header">
+        <h2 class="fav-panel__title">⭐ Preferiti</h2>
+        <button class="fav-panel__close" id="fav-close">✕</button>
+      </div>
+      <div class="fav-panel__list" id="fav-list">
+        <div class="fav-panel__empty">Nessun preferito ancora.<br>Clicca ⭐ su una news!</div>
+      </div>
+    </aside>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>
