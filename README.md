@@ -2,7 +2,6 @@
 
 > Un feed di notizie tech in tempo reale, powered by [Hacker News API](https://github.com/HackerNews/API).
 
-![Preview](https://via.placeholder.com/900x400/0d0d0d/ff4d00?text=Tongue+Tech+Feed)
 
 ## 🔗 Live Demo
 
