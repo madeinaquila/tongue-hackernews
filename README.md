@@ -6,7 +6,7 @@
 
 ## 🔗 Live Demo
 
-**[→ Prova l'applicazione online](https://tongue-hackernews.netlify.app)**
+**[→ Prova l'applicazione online](https://astonishing-frangipane-d9da0a.netlify.app)**
 
 ---
 
