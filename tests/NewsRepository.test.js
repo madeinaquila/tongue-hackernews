@@ -105,14 +105,14 @@ describe('NewsRepository', () => {
 
     it('returns empty array when all IDs exhausted', async () => {
       await repo.init();
-      await repo.loadNextPage(25); // consume all
+      await repo.loadNextPage(25);
       const stories = await repo.loadNextPage(10);
       expect(stories).toHaveLength(0);
     });
 
     it('filters out null stories (deleted/dead items)', async () => {
       fetchStoryById.mockImplementation((id) => {
-        if (id === 1001) return Promise.resolve(null); // simulate dead story
+        if (id === 1001) return Promise.resolve(null);
         const idx = MOCK_IDS.indexOf(id);
         return Promise.resolve(makeMockStory(id, idx));
       });
@@ -123,8 +123,7 @@ describe('NewsRepository', () => {
   });
 
   describe('hasMore', () => {
-    it('is true before init', () => {
-      // Before init, offset=0 and ids=[], so 0 < 0 is false
+    it('is false before init', () => {
       expect(repo.hasMore).toBe(false);
     });
 

@@ -26,5 +26,5 @@ export function toggleFavorite(story) {
     favs.splice(idx, 1);
   }
   localStorage.setItem(KEY, JSON.stringify(favs));
-  return getFavorites();
+  return favs;
 }

@@ -147,7 +147,7 @@ function removeSkeletons() { container.querySelectorAll('.skeleton-card').forEac
 function appendStories(stories) {
   stories.forEach((story, i) => {
     const fav  = isFavorite(story.id);
-    const card = createNewsCard(story, i * 60, fav, (s, nowFav) => {
+    const card = createNewsCard(story, i * 60, fav, (s) => {
       toggleFavorite(s);
       updateFavPanel();
       const favs = getFavorites();
