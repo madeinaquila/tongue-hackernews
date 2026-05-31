@@ -1,16 +1,27 @@
 export function createNewsCard(story, animationDelay = 0, isFav = false, onFavToggle) {
   const card = document.createElement('a');
   card.className = 'news-card';
-  card.href = story.url;
+  card.href = isSafeUrl(story.url) ? story.url : '#';
   card.target = '_blank';
   card.rel = 'noopener noreferrer';
   card.dataset.id = story.id;
   card.dataset.title = story.title.toLowerCase();
   card.style.animationDelay = `${animationDelay}ms`;
 
-  const favicon = story.domain
-    ? `<img class="news-card__favicon" src="https://www.google.com/s2/favicons?domain=${story.domain}&sz=32" alt="" onerror="this.style.display='none'">`
-    : '<span class="news-card__favicon-placeholder">📄</span>';
+  const favicon = document.createElement('img');
+favicon.className = 'news-card__favicon';
+favicon.alt = '';
+if (story.domain) {
+  favicon.src = `https://www.google.com/s2/favicons?domain=${story.domain}&sz=32`;
+  favicon.addEventListener('error', () => { favicon.style.display = 'none'; });
+} else {
+  favicon.replaceWith((() => {
+    const span = document.createElement('span');
+    span.className = 'news-card__favicon-placeholder';
+    span.textContent = '📄';
+    return span;
+  })());
+}
 
   card.innerHTML = `
     <span class="news-card__index">${story.index}</span>
@@ -43,7 +54,14 @@ export function createNewsCard(story, animationDelay = 0, isFav = false, onFavTo
 
   return card;
 }
-
+function isSafeUrl(url) {
+  try {
+    const { protocol } = new URL(url);
+    return protocol === 'http:' || protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
 function escapeHtml(str) {
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
